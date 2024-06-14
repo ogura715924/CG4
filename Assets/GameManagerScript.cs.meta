@@ -4,7 +4,12 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - block: {fileID: 782962496951316616, guid: 181b0d7b1564ecc45b65f81c619e53cb, type: 3}
+  - block: {instanceID: 0}
+  - goal: {instanceID: 0}
+  - coin: {instanceID: 0}
+  - goalParticle: {instanceID: 0}
+  - outBlock: {instanceID: 0}
+  - scoreText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

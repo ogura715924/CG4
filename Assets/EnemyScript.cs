@@ -8,9 +8,9 @@ public class EnemyScript : MonoBehaviour
 
     private float moveSpeed;
     private Vector3 v ;
-    private float Max;
-    private float Min;
-    private float currentPosition;
+
+    //追尾
+    public PlayerScript player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,26 +18,35 @@ public class EnemyScript : MonoBehaviour
         v = rb.velocity;
         moveSpeed = 2;
 
-        Max =  10;
-        Min = -10;
-
-        // 現在の位置を取得
-        currentPosition = transform.position.x;
+        //追尾
+        player = FindObjectOfType<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        v.x = moveSpeed;
-
-
-        // もし現在の位置がMaxまたはMinを超えたら、速度を反転させる
-        if (currentPosition >= currentPosition+Max || currentPosition <= currentPosition+Min)
+    
+        if (player != null)
         {
-            moveSpeed *= -1;
-        }
+            //自機の位置
+            Vector3 playerPosition = player.transform.position;
 
-        rb.velocity = v;
+            //敵の位置
+            Vector3 enemyPosition = transform.position;
+
+            //プレイヤーに向かう方向ベクトルを計算
+            Vector3 direction = (playerPosition - enemyPosition).normalized;
+
+            //敵の速度ベクトルを更新
+            rb.velocity = direction * moveSpeed;
+
+            //敵の向きをプレイヤーに向ける
+            transform.LookAt(playerPosition);
+
+        }
+        
+
+
     }
 
 }
